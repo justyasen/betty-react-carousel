@@ -7,19 +7,19 @@ const App: React.FC = () => {
     <div
       style={{
         width: '100%',
-        height: '100vh', // Take full viewport height
+        height: '100vh', 
         display: 'flex',
-        alignItems: 'center', // Vertically center the content
-        justifyContent: 'center', // Horizontally center the content
+        alignItems: 'center', 
+        justifyContent: 'center', 
         backgroundColor: '#f0f0f0',
       }}
     >
       <div
         style={{
           width: '80%',
-          height: '70vh', // Set carousel height to 50% of the viewport height
+          height: '70vh', 
           display: 'flex',
-          justifyContent: 'center', // Center carousel content horizontally
+          justifyContent: 'center', 
         }}
       >
         <Carousel />
