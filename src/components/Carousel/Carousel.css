@@ -1,0 +1,51 @@
+/* Carousel.css */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0; 
+}
+
+.carousel-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; 
+  width: 80%; 
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  overflow-x: scroll;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  cursor: grab;
+  height: 100%;
+}
+
+.carousel-container:active {
+  cursor: grabbing;
+}
+
+.carousel-container img {
+  flex-shrink: 0;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  margin-right: 10px; 
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-container {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
