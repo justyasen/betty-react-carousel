@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import './Carousel.css'; // Optional for styling
+import './Carousel.css'; 
 import useImages from '../../hooks/useImages';
 
 const Carousel: React.FC = () => {

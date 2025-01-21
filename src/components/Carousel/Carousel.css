@@ -6,15 +6,15 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0; /* Optional: Add a background color for better visibility */
+  background-color: #f0f0f0; 
 }
 
 .carousel-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; /* Set height to 50% of the viewport height */
-  width: 80%; /* You can adjust this value to fit your needs */
+  height: 50vh; 
+  width: 80%; 
   overflow: hidden;
 }
 
@@ -38,15 +38,14 @@ body, html {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
-  margin-right: 10px; /* Optional spacing between images */
+  margin-right: 10px; 
 }
 
-/* Hide default scrollbar */
 .carousel-container::-webkit-scrollbar {
   display: none;
 }
 
 .carousel-container {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
