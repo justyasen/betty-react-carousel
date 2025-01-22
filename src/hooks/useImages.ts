@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 interface ImageData {
   id: string;

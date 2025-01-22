@@ -1,52 +1,73 @@
-import React, { useRef, useEffect } from 'react';
-import './Carousel.css'; 
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useImages from '../../hooks/useImages';
+import './Carousel.css';
 
 const Carousel: React.FC = () => {
   const { images, isLoading, error, loadMoreImages, hasMore } = useImages(10); // Fetch 10 images per page
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [isScrollLoading, setIsScrollLoading] = useState(false);
 
-  const handleScroll = () => {
-    if (carouselRef.current) {
+  const handleScroll = useCallback(() => {
+    if (carouselRef.current && !isScrollLoading) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+
+      // Trigger load more images when the user reaches 80% of the scroll width
+      if (scrollLeft + clientWidth >= scrollWidth * 0.8 && hasMore && !isLoading) {
+        setIsScrollLoading(true); // Prevent duplicate loading
+        loadMoreImages();
+      }
       
-      if (scrollLeft + clientWidth >= scrollWidth * 0.9) {
-        if (hasMore && !isLoading) {
-          loadMoreImages(); 
+      // Ensure the carousel scrolls back to the start (infinite scroll)
+      if (scrollLeft === scrollWidth - clientWidth) {
+        if (carouselRef.current) {
+          carouselRef.current.scrollLeft = 0;
         }
       }
     }
-  };
+  }, [isScrollLoading, hasMore, isLoading, loadMoreImages]);
 
   useEffect(() => {
     const carousel = carouselRef.current;
     if (carousel) {
-      carousel.addEventListener('scroll', handleScroll);
+      // Throttle the scroll event handler to prevent unwanted events
+      const throttledScroll = () => {
+        if (!isLoading && !isScrollLoading) {
+          handleScroll();
+        }
+      };
+
+      carousel.addEventListener('scroll', throttledScroll);
       return () => {
-        carousel.removeEventListener('scroll', handleScroll);
+        carousel.removeEventListener('scroll', throttledScroll);
       };
     }
-  }, [isLoading, hasMore]);
+  }, [handleScroll, isLoading, isScrollLoading]);
 
-  if (isLoading && images.length === 0) return <div>Loading images...</div>;
+  useEffect(() => {
+    // Reset loading state once images are loaded
+    if (!isLoading) {
+      setIsScrollLoading(false);
+    }
+  }, [isLoading]);
+
   if (error) return <div>Error loading images: {error}</div>;
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="carousel-wrapper">
       <div
-        className="carousel-container"
+        className={`carousel-container ${isLoading ? 'loading' : ''}`}
         ref={carouselRef}
-        style={{ overflowX: 'scroll', whiteSpace: 'nowrap', cursor: isLoading ? 'wait' : 'grab' }}
       >
         {images.map((url, index) => (
-          <img
-            key={index}
-            src={url}
-            alt={`carousel-${index}`}
-            style={{ display: 'inline-block', width: '100%', objectFit: 'cover' }}
-          />
+          <div key={index} className="carousel-image-container">
+            <img src={url} alt={`carousel-${index}`} />
+          </div>
         ))}
-        {isLoading && <div className="loading-spinner">Loading more...</div>}
+        {isLoading && (
+          <div className="loading-spinner">
+            <span>Loading...</span>
+          </div>
+        )}
       </div>
     </div>
   );
