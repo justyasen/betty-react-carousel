@@ -22,24 +22,6 @@ yarn test
 - Jest & React Testing Library
 - CSS3 Animations
 
----
-
-## 📂 Features Base Architecture
-src/
-├── components/
-│ ├── ImageCarousel/
-│ │ ├── ImageCarousel.tsx
-│ │ └── ImageCarousel.css
-│ └── CarouselSlider/
-│ ├── CarouselSlider.tsx
-│ └── CarouselSlider.css
-├── hooks/
-│ └── useImageLoader.ts
-├── types/
-│ └── types.ts
-└── tests/
-└── tests/
-
 
 ## 📈 Data Flow
 Picsum API -> React Query Cache -> useImageLoader Hook -> ImageCarousel -> CarouselSlider -> Rendered UI
