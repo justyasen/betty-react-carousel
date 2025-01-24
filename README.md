@@ -15,10 +15,10 @@ yarn start
 yarn test
 
 ## 🛠 Tech Stack
-- React 19.0.0
-- TypeScript 4.4.2
-- React Query 3.39.3
-- Axios 1.7.9
+- React 
+- TypeScript 
+- React Query 
+- Axios 
 - Jest & React Testing Library
 - CSS3 Animations
 
