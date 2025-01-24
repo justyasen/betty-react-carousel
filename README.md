@@ -5,11 +5,13 @@ A modern, infinite-scrolling image carousel built with React and TypeScript, fea
 
 ## 🚀 Quick Start
 
-Install dependencies
+**Install dependencies**
 yarn install
-Start development server
+
+**Start development server**
 yarn start
-Run tests
+
+**Run tests**
 yarn test
 
 ## 🛠 Tech Stack
